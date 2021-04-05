@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace RoadSimLib
@@ -24,6 +25,15 @@ namespace RoadSimLib
 			set;
 		}
 
+		private List<SegmentItem> items;
+		public IEnumerable<SegmentItem> Items => items;
+		
+
+		public Segment()
+		{
+			items = new List<SegmentItem>();
+		}
+
 		public IEnumerable<Vector> GetPositions()
 		{
 			Vector delta;
@@ -32,6 +42,11 @@ namespace RoadSimLib
 			for (int t = 0; t < Length; t++) yield return Position + t * delta;
 		}
 
+		public float GetDistanceFromLastItem()
+		{
+			if (items.Count == 0) return Length;
+			return (Length-items[items.Count - 1].Distance);
+		}
 
 	}
 }
