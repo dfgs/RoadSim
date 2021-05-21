@@ -21,5 +21,7 @@ namespace RoadSimLib
 			get;
 		}
 
+		void Add(ITile Tile);
+
 	}
 }
