@@ -4,17 +4,22 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public class SegmentItem
+	public interface IDeck
 	{
-		public float Distance
+		IEnumerable<ITile> Tiles
 		{
 			get;
-			set;
 		}
 
-		public SegmentItem()
+		int Count
 		{
-
+			get;
 		}
+
+		int Capacity
+		{
+			get;
+		}
+
 	}
 }

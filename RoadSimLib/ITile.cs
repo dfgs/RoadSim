@@ -4,10 +4,8 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public class Cell
+	public interface ITile
 	{
-		
-
-			
+		void Rotate();
 	}
 }

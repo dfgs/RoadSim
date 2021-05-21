@@ -4,5 +4,5 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public enum Directions	{Up,Down,Left,Right	};
+	public enum Directions	{Up=1,Down=4,Left=8,Right=2	};
 }

@@ -6,7 +6,7 @@ namespace RoadSimLib
 {
 	public interface IMap
 	{
-		IEnumerable<Segment> Segments
+		IEnumerable<Cell> Cells
 		{
 			get;
 		}
@@ -21,10 +21,7 @@ namespace RoadSimLib
 			get;
 		}
 
-		Cell GetCell(Vector Position);
-		Segment GetSegment(Vector Position);
-		Segment GetSegment(Vector Position, Directions Direction);
-		Cell AddCell(Vector Position, Directions Direction);
+		Cell GetCell(int X,int Y);
 
 	}
 }

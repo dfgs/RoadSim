@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadSim", "RoadSim\RoadSim.csproj", "{659E702F-5750-41E1-84EE-A4F59C6AC64C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoadSim", "RoadSim\RoadSim.csproj", "{659E702F-5750-41E1-84EE-A4F59C6AC64C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadSimLib", "RoadSimLib\RoadSimLib.csproj", "{0AD1D533-0560-4E86-80AF-A3755DD82914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoadSimLib", "RoadSimLib\RoadSimLib.csproj", "{0AD1D533-0560-4E86-80AF-A3755DD82914}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoadSimLib.UnitTest", "RoadSimLib.UnitTest\RoadSimLib.UnitTest.csproj", "{194A6E7F-9AEE-4F1E-A6E9-EBC1C31D43F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGUI", "TestGUI\TestGUI.csproj", "{C533529D-829E-4988-B992-FDD478696A87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{78ABCEC3-9A5B-4743-B86D-7A15BA932DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleLib", "..\ModuleLib\ModuleLib\ModuleLib.csproj", "{F89B06C7-43CC-4589-9859-3A4656AAA4A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogLib", "..\LogLib\LogLib\LogLib.csproj", "{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,25 @@ Global
 		{194A6E7F-9AEE-4F1E-A6E9-EBC1C31D43F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{194A6E7F-9AEE-4F1E-A6E9-EBC1C31D43F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{194A6E7F-9AEE-4F1E-A6E9-EBC1C31D43F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C533529D-829E-4988-B992-FDD478696A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C533529D-829E-4988-B992-FDD478696A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C533529D-829E-4988-B992-FDD478696A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C533529D-829E-4988-B992-FDD478696A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6} = {78ABCEC3-9A5B-4743-B86D-7A15BA932DFC}
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272} = {78ABCEC3-9A5B-4743-B86D-7A15BA932DFC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57DE83C3-920C-4BAB-9974-9F13F1BB171D}

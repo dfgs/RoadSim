@@ -7,8 +7,20 @@ namespace RoadSimLib
 {
 	public class Map : IMap
 	{
-		private List<Segment> segments;
-		public IEnumerable<Segment> Segments => segments;
+		public IEnumerable<Cell> Cells
+		{
+			get
+			{
+				for(int Y=0;Y<height;Y++)
+				{
+					for(int X=0;X<width;X++)
+					{
+						yield return cells[X, Y];
+					}
+				}
+			}
+		}
+		
 
 		private Cell[,] cells;
 
@@ -18,10 +30,18 @@ namespace RoadSimLib
 		private int height;
 		public int Height => height;
 
-		private Cell this[Vector Position]
+		private Cell this[int X,int Y]
 		{
-			get => cells[Position.X, Position.Y];
-			set => cells[Position.X, Position.Y]=value;
+			get
+			{
+				if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return null;
+				return cells[X, Y];
+			}
+			set
+			{
+				if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return ;
+				cells[X, Y] = value;
+			}
 		}
 
 
@@ -32,82 +52,14 @@ namespace RoadSimLib
 			this.width = Width;this.height = Height;
 
 			cells = new Cell[width, height];
-			segments = new List<Segment>();
 		}
 
-		public Cell GetCell(Vector Position)
+		public Cell GetCell(int X,int Y)
 		{
-			if ((Position.X < 0) || (Position.Y < 0) || (Position.X >= width) || (Position.Y >= height)) return null;
-			return cells[Position.X, Position.Y];
-		}
-		public Segment GetSegment(Vector Position)
-		{
-			if ((Position.X < 0) || (Position.Y < 0) || (Position.X >= width) || (Position.Y >= height)) return null;
-			return cells[Position.X, Position.Y]?.Segment;
-		}
-		public Segment GetSegment(Vector Position, Directions Direction)
-		{
-			Cell cell;
-
-			if ((Position.X < 0) || (Position.Y < 0) || (Position.X >= width) || (Position.Y >= height)) return null;
-			cell = cells[Position.X, Position.Y];
-			if ( cell== null) return null;
-			if (cell.Segment.Direction != Direction) return null;
-			return cell.Segment;
+			if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return null;
+			return cells[X, Y];
 		}
 		
-
-
-		public Cell AddCell(Vector Position, Directions Direction)
-		{
-			Segment previousSegment,nextSegment,segment;
-			Vector delta;
-
-			if (cells[Position.X, Position.Y] != null) throw new InvalidOperationException("Cell already exists");
-
-			delta = Vector.DirectionToVector(Direction);
-
-			previousSegment = GetSegment(Position-delta,Direction);
-			nextSegment = GetSegment(Position+delta, Direction);
-
-			if ((previousSegment != null) && (nextSegment != null))
-			{
-				// fusion
-				segments.Remove(previousSegment);
-				segments.Remove(nextSegment);
-
-				segment = new Segment() { Direction = Direction, Position = previousSegment.Position, Length = nextSegment.Length+previousSegment.Length+1 };
-				segments.Add(segment);
-				foreach (Cell cell in previousSegment.GetPositions().Union(nextSegment.GetPositions()).Select(position=>this[position]))
-				{
-					cell.Segment = segment;
-				}
-			}
-			else if ((previousSegment == null) && (nextSegment == null))
-			{
-				// creation
-				segment = new Segment() { Direction = Direction, Position=Position,Length=1 };
-				segments.Add(segment);
-			}
-			else if (previousSegment!=null)
-			{
-				// extend previous
-				segment= previousSegment;
-				segment.Length += 1;
-			}
-			else
-			{
-				// extend next
-				segment = nextSegment;
-				segment.Position = Position;
-				segment.Length += 1;
-			}
-
-
-			this[Position] = new Cell() { Segment = segment };
-
-			return this[Position];
-		}
 
 
 	}

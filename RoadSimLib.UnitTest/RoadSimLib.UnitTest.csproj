@@ -49,8 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VectorUnitTest.cs" />
-    <Compile Include="SegmentUnitTest.cs" />
+    <Compile Include="DeckUnitTest.cs" />
+    <Compile Include="TileUnitTest.cs" />
     <Compile Include="MapUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
