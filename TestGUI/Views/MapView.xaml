@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:TestGUI.Views"
-			 
+			 xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
- 
-	<ItemsControl ItemsSource="{Binding Tiles}">
+
+	<ItemsControl ItemsSource="{Binding Tiles}" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding Tiles}">
 		<ItemsControl.ItemContainerStyle>
-			<Style>
+			<Style TargetType="{x:Type ContentPresenter}">
 				<Setter Property="views:TileGrid.X" Value="{Binding X}"/>
 				<Setter Property="views:TileGrid.Y" Value="{Binding Y}"/>
 			</Style>
@@ -18,13 +19,13 @@
 		
 		<ItemsControl.ItemsPanel>
 			<ItemsPanelTemplate>
-				<views:TileGrid TileHeight="32" TileWidth="32" Columns="{Binding Width}" Rows="{Binding Height}"/>
+				<views:TileGrid  TileHeight="64" TileWidth="64" Columns="{Binding Width}" Rows="{Binding Height}"/>
 			</ItemsPanelTemplate>
 		</ItemsControl.ItemsPanel>
 
 		<ItemsControl.ItemTemplate>
 			<DataTemplate>
-				<Image Stretch="None" Source="{Binding ImageSource}" />
+				<Image Stretch="Uniform" Source="{Binding ImageSource}" />
 			</DataTemplate>
 		</ItemsControl.ItemTemplate>
 	</ItemsControl>

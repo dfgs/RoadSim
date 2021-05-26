@@ -12,20 +12,8 @@ namespace TestGUI.ViewModels
 	public class TileViewModel:ViewModel<Tile>
 	{
 
-		/*public static readonly DependencyProperty XProperty = DependencyProperty.Register("X", typeof(int), typeof(TileViewModel));
-		public int X
-		{
-			get { return (int)GetValue(XProperty); }
-			set { SetValue(XProperty, value); }
-		}
 
 
-		public static readonly DependencyProperty YProperty = DependencyProperty.Register("Y", typeof(int), typeof(TileViewModel));
-		public int Y
-		{
-			get { return (int)GetValue(YProperty); }
-			set { SetValue(YProperty, value); }
-		}*/
 
 
 
@@ -62,7 +50,13 @@ namespace TestGUI.ViewModels
 		}
 
 		
+		public void SetPattern(int Pattern)
+		{
+			if (Model == null) return;
+			Model.Pattern = Pattern;
 
+			ImageSource = $"/Images/Tile{Model.Pattern}.png";
+		}
 
 
 
