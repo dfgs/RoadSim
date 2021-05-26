@@ -4,24 +4,15 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public interface IDeck
+	public interface IInstance
 	{
-		IEnumerable<ICard> Cards
+		IMap Map
 		{
 			get;
 		}
-
-		int Count
+		IDeck Deck
 		{
 			get;
 		}
-
-		int Capacity
-		{
-			get;
-		}
-
-		void Add(ICard Card);
-
 	}
 }

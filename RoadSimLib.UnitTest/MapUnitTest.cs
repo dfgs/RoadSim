@@ -4,12 +4,7 @@ using System.Linq;
 
 namespace RoadSimLib.UnitTest
 {
-	/*
-	←
-	↑
-	→
-	↓
-	*/
+	
 
 	[TestClass]
 	public class MapUnitTest
@@ -23,36 +18,49 @@ namespace RoadSimLib.UnitTest
 			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Map(10, -1));
 		}
 
-		
-
-
-		/*[TestMethod]
+		[TestMethod]
 		public void ShouldGetCell()
 		{
-			IMap map;
-			Cell cell1, cell2, cell3;
+			Map map;
 
-			// -↑---
-			// -----
-			// -↑---
-			// -----
-			// -↑---
+			map = new Map(10, 10);
+			Assert.IsNotNull(map.GetCell(0, 0));
+			Assert.IsNotNull(map.GetCell(9, 9));
+		}
+		[TestMethod]
+		public void ShouldNotGetCell()
+		{
+			Map map;
 
+			map = new Map(10, 10);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetCell(-1, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetCell(0, -1));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetCell(10, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetCell(0, 10));
+		}
+		[TestMethod]
+		public void ShouldGetTile()
+		{
+			Map map;
 
-			map = new Map(5, 5);
-			cell1 = map.AddCell(new Vector(1, 0), Directions.Up);
-			cell2 = map.AddCell(new Vector(1, 2), Directions.Up);
-			cell3 = map.AddCell(new Vector(1, 4), Directions.Up);
+			map = new Map(10, 10);
+			Assert.IsNotNull(map.GetTile(0, 0));
+			Assert.IsNotNull(map.GetTile(9, 9));
+		}
+		[TestMethod]
+		public void ShouldNotGetTile()
+		{
+			Map map;
 
-			Assert.AreEqual(cell1, map.GetCell(new Vector(1, 0)));
-			Assert.AreEqual(cell2, map.GetCell(new Vector(1, 2)));
-			Assert.AreEqual(cell3, map.GetCell(new Vector(1, 4)));
-			Assert.IsNull(map.GetCell(new Vector(0, 0)));
-			Assert.IsNull(map.GetCell(new Vector(-1, -1)));
-			Assert.IsNull(map.GetCell(new Vector(20, 20)));
-		}*/
-
+			map = new Map(10, 10);
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetTile(-1, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetTile(0, -1));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetTile(10, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => map.GetTile(0, 10));
+		}
 	
+
+
 
 
 	}

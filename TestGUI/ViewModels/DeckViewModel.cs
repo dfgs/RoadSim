@@ -6,17 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ViewModelLib;
 
 namespace TestGUI.ViewModels
 {
-	public class DeckViewModel : ViewModel<Deck>
+	public class DeckViewModel : ViewModel<IDeck>
 	{
 
-		public static readonly DependencyProperty TilesProperty = DependencyProperty.Register("Tiles", typeof(ObservableCollection<TileViewModel>), typeof(DeckViewModel));
-		public ObservableCollection<TileViewModel> Tiles
+		public static readonly DependencyProperty CardsProperty = DependencyProperty.Register("Cards", typeof(ViewModelCollection<CardViewModel>), typeof(DeckViewModel));
+		public ViewModelCollection<CardViewModel> Cards
 		{
-			get { return (ObservableCollection<TileViewModel>)GetValue(TilesProperty); }
-			set { SetValue(TilesProperty, value); }
+			get { return (ViewModelCollection<CardViewModel>)GetValue(CardsProperty); }
+			set { SetValue(CardsProperty, value); }
 		}
 
 
@@ -25,21 +26,21 @@ namespace TestGUI.ViewModels
 			
 		}
 
-		public DeckViewModel(Deck Model) : base(Model)
+		public DeckViewModel(IDeck Model) : base(Model)
 		{
 		}
 
-		protected override void OnModelChanged(Deck OldValue, Deck NewValue)
+		protected override void OnModelChanged(IDeck OldValue, IDeck NewValue)
 		{
 			base.OnModelChanged(OldValue, NewValue);
 
-			if (Model == null) Tiles = null;
+			if (Model == null) Cards = null;
 			else
 			{
-				Tiles = new ObservableCollection<TileViewModel>();
-				foreach(Tile tile in Model.Tiles)
+				Cards = new ViewModelCollection<CardViewModel>();
+				foreach(Card tile in Model.Cards)
 				{
-					Tiles.Add(new TileViewModel(tile));
+					Cards.Add(new CardViewModel(tile));
 				}
 			}
 		}

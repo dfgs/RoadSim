@@ -5,11 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ViewModelLib;
 
 namespace TestGUI.ViewModels
 {
 	public class TileViewModel:ViewModel<Tile>
 	{
+
+		/*public static readonly DependencyProperty XProperty = DependencyProperty.Register("X", typeof(int), typeof(TileViewModel));
+		public int X
+		{
+			get { return (int)GetValue(XProperty); }
+			set { SetValue(XProperty, value); }
+		}
+
+
+		public static readonly DependencyProperty YProperty = DependencyProperty.Register("Y", typeof(int), typeof(TileViewModel));
+		public int Y
+		{
+			get { return (int)GetValue(YProperty); }
+			set { SetValue(YProperty, value); }
+		}*/
+
+
 
 		public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register("ImageSource", typeof(string), typeof(TileViewModel));
 		public string ImageSource
@@ -21,18 +39,31 @@ namespace TestGUI.ViewModels
 
 		public TileViewModel():base()
 		{
-
 		}
+
+		
+
 		public TileViewModel(Tile Model) : base(Model)
 		{
 
 		}
 		protected override void OnModelChanged(Tile OldValue, Tile NewValue)
 		{
-			base.OnModelChanged(OldValue, NewValue);
-			if (Model == null) ImageSource = null;
-			else ImageSource = $"Images/Tile{Model.Pattern}.png";
+			if (Model == null)
+			{
+				ImageSource = null;
+				return;
+			}
+
+			
+			ImageSource = $"/Images/Tile{Model.Pattern}.png";
+
+			base.OnModelChanged(OldValue,NewValue);
 		}
+
+		
+
+
 
 
 	}

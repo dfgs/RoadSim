@@ -6,10 +6,10 @@ namespace RoadSimLib
 {
 	public class Deck : IDeck
 	{
-		private List<ITile> tiles;
-		public IEnumerable<ITile> Tiles => tiles;
+		private List<ICard> cards;
+		public IEnumerable<ICard> Cards => cards;
 
-		public int Count => tiles.Count;
+		public int Count => cards.Count;
 
 		public int Capacity
 		{
@@ -18,21 +18,21 @@ namespace RoadSimLib
 		}
 		public Deck()
 		{
-			tiles = new List<ITile>();
+			cards = new List<ICard>();
 			this.Capacity = 7;
 		}
 		public Deck(int Capacity)
 		{
 			if (Capacity <= 0)  throw new ArgumentOutOfRangeException(nameof(Capacity));
-			tiles = new List<ITile>();
+			cards = new List<ICard>();
 			this.Capacity = Capacity;
 		}
 
-		public void Add(ITile Tile)
+		public void Add(ICard Card)
 		{
-			if (Tile == null) throw new ArgumentNullException(nameof(Tile));
+			if (Card == null) throw new ArgumentNullException(nameof(Card));
 			if (Count == Capacity) throw new InvalidOperationException("Deck reached maximum capacity");
-			tiles.Add(Tile);
+			cards.Add(Card);
 		}
 
 	}

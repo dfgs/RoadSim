@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestGUI"
 		xmlns:viewMdodels="clr-namespace:TestGUI.ViewModels"
+		xmlns:views="clr-namespace:TestGUI.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -14,13 +15,8 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
-		<ListBox Grid.Column="0" ItemsSource="{Binding Tiles}">
-			<ListBox.ItemTemplate>
-				<DataTemplate DataType="{x:Type viewMdodels:TileViewModel}">
-					<Image Source="{Binding ImageSource}" Stretch="None"/>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
+		<views:CardsView  Grid.Column="0" DataContext="{Binding Deck.Cards}"/>
 		<GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+		<views:MapView Grid.Column="2" DataContext="{Binding Map}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 	</Grid>
 </Window>

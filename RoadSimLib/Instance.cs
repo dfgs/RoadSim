@@ -4,29 +4,24 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public class Cell : ICell
+	public class Instance : IInstance
 	{
-		public int X
+		public IMap Map
 		{
 			get;
 			set;
 		}
 
-		public int Y
+		public IDeck Deck
 		{
 			get;
 			set;
 		}
-		public Cell()
+		public Instance()
 		{
 
 		}
-
-		public Cell(int X,int Y)
-		{
-			this.X = X;this.Y = Y;
-		}
-
+		
 
 	}
 }

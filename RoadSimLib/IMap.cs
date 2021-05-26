@@ -6,11 +6,14 @@ namespace RoadSimLib
 {
 	public interface IMap
 	{
-		IEnumerable<Cell> Cells
+		IEnumerable<ICell> Cells
 		{
 			get;
 		}
-
+		IEnumerable<ITile> Tiles
+		{
+			get;
+		}
 		int Width
 		{
 			get;
@@ -20,8 +23,14 @@ namespace RoadSimLib
 		{
 			get;
 		}
+		ICell this[int X, int Y]
+		{
+			get;
+		}
 
-		Cell GetCell(int X,int Y);
+		ICell GetCell(int X, int Y);
+
+		ITile GetTile(int X, int Y);
 
 	}
 }

@@ -30,7 +30,7 @@ namespace RoadSimLib.UnitTest
 
 			deck = new Deck();
 			Assert.AreEqual(0, deck.Count);
-			deck.Add(new Tile());
+			deck.Add(new Card());
 			Assert.AreEqual(1, deck.Count);
 		}
 
@@ -50,9 +50,9 @@ namespace RoadSimLib.UnitTest
 
 			deck = new Deck(1);
 			Assert.AreEqual(0, deck.Count);
-			deck.Add(new Tile());
+			deck.Add(new Card());
 			Assert.AreEqual(1, deck.Count);
-			Assert.ThrowsException<InvalidOperationException>(() => deck.Add(new Tile()));
+			Assert.ThrowsException<InvalidOperationException>(() => deck.Add(new Card()));
 		}
 
 

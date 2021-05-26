@@ -7,7 +7,7 @@ namespace RoadSimLib
 {
 	public class Map : IMap
 	{
-		public IEnumerable<Cell> Cells
+		public IEnumerable<ICell> Cells
 		{
 			get
 			{
@@ -20,9 +20,23 @@ namespace RoadSimLib
 				}
 			}
 		}
-		
 
-		private Cell[,] cells;
+		public IEnumerable<ITile> Tiles
+		{
+			get
+			{
+				for (int Y = 0; Y < height; Y++)
+				{
+					for (int X = 0; X < width; X++)
+					{
+						yield return tiles[X, Y];
+					}
+				}
+			}
+		}
+
+		private ICell[,] cells;
+		private ITile[,] tiles;
 
 		private int width;
 		public int Width => width;
@@ -30,18 +44,19 @@ namespace RoadSimLib
 		private int height;
 		public int Height => height;
 
-		private Cell this[int X,int Y]
+		public ICell this[int X,int Y]
 		{
 			get
 			{
-				if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return null;
+				if ((X < 0) || (X >= width)) throw new ArgumentOutOfRangeException(nameof(X));
+				if ((Y < 0) || (Y >= height)) throw new ArgumentOutOfRangeException(nameof(Y));
 				return cells[X, Y];
 			}
-			set
+			/*set
 			{
 				if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return ;
 				cells[X, Y] = value;
-			}
+			}*/
 		}
 
 
@@ -52,15 +67,31 @@ namespace RoadSimLib
 			this.width = Width;this.height = Height;
 
 			cells = new Cell[width, height];
+			tiles = new Tile[width, height];
+
+			for (int Y = 0; Y < height; Y++)
+			{
+				for (int X = 0; X < width; X++)
+				{
+					cells[X, Y] = new Cell(X, Y);
+					tiles[X, Y] = new Tile(X, Y,0);
+				}
+			}
 		}
 
-		public Cell GetCell(int X,int Y)
+		public ICell GetCell(int X,int Y)
 		{
-			if ((X < 0) || (Y < 0) || (X >= width) || (Y >= height)) return null;
+			if ((X < 0) || (X >= width)) throw new ArgumentOutOfRangeException(nameof(X));
+			if ((Y < 0) || (Y >= height)) throw new ArgumentOutOfRangeException(nameof(Y));
 			return cells[X, Y];
 		}
-		
 
+		public ITile GetTile(int X, int Y)
+		{
+			if ((X < 0) || (X >= width)) throw new ArgumentOutOfRangeException(nameof(X));
+			if ((Y < 0) || (Y >= height)) throw new ArgumentOutOfRangeException(nameof(Y));
+			return tiles[X, Y];
+		}
 
 	}
 }

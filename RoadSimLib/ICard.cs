@@ -4,19 +4,8 @@ using System.Text;
 
 namespace RoadSimLib
 {
-	public interface ITile
+	public interface ICard
 	{
-		int X
-		{
-			get;
-		}
-		int Y
-		{
-			get;
-		}
-		int Pattern
-		{
-			get;
-		}
+		void Rotate();
 	}
 }

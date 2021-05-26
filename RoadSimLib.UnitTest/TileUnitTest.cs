@@ -11,16 +11,15 @@ namespace RoadSimLib.UnitTest
 		[TestMethod]
 		public void ShouldCheckConstructorParameters()
 		{
-			Tile tile;
+			Card tile;
 
-			tile = new Tile();
+			tile = new Card();
 			Assert.AreEqual(1, tile.Pattern);
-			tile = new Tile(3);
+			tile = new Card(3);
 			Assert.AreEqual(3, tile.Pattern);
 
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Tile(-1));
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Tile(0));
-			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Tile(16));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Card(-1));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Card(16));
 		}
 
 
@@ -30,31 +29,33 @@ namespace RoadSimLib.UnitTest
 		public void ShouldRotateUsingStaticMethod()
 		{
 
-			Assert.AreEqual(2, Tile.Rotate(1));
-			Assert.AreEqual(4, Tile.Rotate(2));
-			Assert.AreEqual(8, Tile.Rotate(4));
-			Assert.AreEqual(1, Tile.Rotate(8));
+			Assert.AreEqual(0, Card.Rotate(0));
+
+			Assert.AreEqual(2, Card.Rotate(1));
+			Assert.AreEqual(4, Card.Rotate(2));
+			Assert.AreEqual(8, Card.Rotate(4));
+			Assert.AreEqual(1, Card.Rotate(8));
 
 
-			Assert.AreEqual(6, Tile.Rotate(3));
-			Assert.AreEqual(12, Tile.Rotate(6));
-			Assert.AreEqual(9, Tile.Rotate(12));
-			Assert.AreEqual(3, Tile.Rotate(9));
+			Assert.AreEqual(6, Card.Rotate(3));
+			Assert.AreEqual(12, Card.Rotate(6));
+			Assert.AreEqual(9, Card.Rotate(12));
+			Assert.AreEqual(3, Card.Rotate(9));
 
-			Assert.AreEqual(14, Tile.Rotate(7));
-			Assert.AreEqual(13, Tile.Rotate(14));
-			Assert.AreEqual(11, Tile.Rotate(13));
-			Assert.AreEqual(7, Tile.Rotate(11));
+			Assert.AreEqual(14, Card.Rotate(7));
+			Assert.AreEqual(13, Card.Rotate(14));
+			Assert.AreEqual(11, Card.Rotate(13));
+			Assert.AreEqual(7, Card.Rotate(11));
 
-			Assert.AreEqual(15, Tile.Rotate(15));
+			Assert.AreEqual(15, Card.Rotate(15));
 		}
 
 		[TestMethod]
 		public void ShouldRotate()
 		{
-			Tile tile;
+			Card tile;
 
-			tile = new Tile();
+			tile = new Card();
 			tile.Pattern = 1;
 
 			Assert.AreEqual(1, tile.Pattern);

@@ -23,25 +23,37 @@ namespace TestGUI
 	public partial class MainWindow : Window
 	{
 
-		public static readonly DependencyProperty DeckProperty = DependencyProperty.Register("Deck", typeof(DeckViewModel), typeof(MainWindow));
-		public DeckViewModel Deck
+
+		public static readonly DependencyProperty InstanceProperty = DependencyProperty.Register("Instance", typeof(InstanceViewModel), typeof(MainWindow));
+		public InstanceViewModel Instance
 		{
-			get { return (DeckViewModel)GetValue(DeckProperty); }
-			set { SetValue(DeckProperty, value); }
+			get { return (InstanceViewModel)GetValue(InstanceProperty); }
+			set { SetValue(InstanceProperty, value); }
 		}
+
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			Deck deck = new Deck();
-			deck.Add(new Tile(1));
-			deck.Add(new Tile(3));
-			deck.Add(new Tile(7));
-			deck.Add(new Tile(15));
 
-			Deck = new DeckViewModel(deck);
-			DataContext = Deck;
+
+			Instance instance = new Instance();
+			instance.Deck = new Deck();
+			instance.Deck.Add(new Card(1));
+			instance.Deck.Add(new Card(3));
+			instance.Deck.Add(new Card(7));
+			instance.Deck.Add(new Card(15));
+
+			instance.Map = new Map(10, 10);
+
+			Instance = new InstanceViewModel(instance);
+			
+			DataContext = Instance;
 		}
+
+		
+
+
 	}
 }
